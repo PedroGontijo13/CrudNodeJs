@@ -24,15 +24,15 @@ module.exports = {
       if (!user) {
         res.status(401).json({ message: "Nao foi encontrado!" });
       } else {
-        const userUpdated = await User.update(
+        const user = await User.update(
           { name, email },
           { where: { id } }
         );
 
-        return res.json(userUpdated);
+        res.status(200).json({user});
       }
     } catch (error) {
-        res.status(400).json({ error })
+        res.status(401).json({ error })
     }
   },
 };
